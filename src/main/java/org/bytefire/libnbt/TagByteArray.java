@@ -6,7 +6,8 @@
 package org.bytefire.libnbt;
 
 /**
- * An array of bytes of unspecified format, headed by a TAG_Int for length.
+ * A tag representing an array of bytes of unspecified format,
+ * headed by a TAG_Int for length.
  * @author Timothy Oltjenbruns
  * @version 1.0, 05/29/2013
  * @see TagType#TAG_ByteArray

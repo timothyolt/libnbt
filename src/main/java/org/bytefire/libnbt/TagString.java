@@ -12,7 +12,7 @@ import java.nio.charset.Charset;
  * headed by a TAG_Short for length.
  * @author Timothy Oltjenbruns
  * @version 1.0, 05/29/2013
- * @see TagType#Tag_String
+ * @see TagType#TAG_String
  */
 public class TagString extends Tag {
 
@@ -37,7 +37,7 @@ public class TagString extends Tag {
     /**
      * Gets the ID of TAG_String.
      * @return TAG_String ID
-     * @see TagType#Tag_String
+     * @see TagType#TAG_String
      */
     @Override
     public byte getID() {
@@ -47,7 +47,7 @@ public class TagString extends Tag {
     /**
      * Gets the TagType of TAG_String.
      * @return TagType TAG_String
-     * @see TagType#Tag_String
+     * @see TagType#TAG_String
      */
     @Override
     public TagType getTagType() {

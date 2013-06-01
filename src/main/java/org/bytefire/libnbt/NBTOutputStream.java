@@ -352,7 +352,6 @@ public class NBTOutputStream implements Closeable {
     /**
      * Writes a TAG_List to the stream.
      * @param listTag TAG_List to be written
-     * @param named whether the tag's name and ID should be written
      * @throws IOException when there is an IO error
      * @see TagList
      */

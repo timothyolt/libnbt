@@ -267,7 +267,7 @@ public class NBTInputStream implements Closeable {
     /**
      * Reads the next bytes in the stream as a TAG_End (excluding the tag type).
      * @return a TAG_End from the stream
-     * @see TAG_End
+     * @see TagType#TAG_End
      */
     public TagEnd readEnd() {
         return new TagEnd();
@@ -278,7 +278,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_Byte from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Byte
+     * @see TagType#TAG_Byte
      */
     public TagByte readByte() throws IOException {
         return readByte(true);
@@ -290,7 +290,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_Byte from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Byte
+     * @see TagType#TAG_Byte
      */
     public TagByte readByte(boolean named) throws IOException {
         String name = null;
@@ -303,7 +303,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_Short from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Short
+     * @see TagType#TAG_Short
      */
     public TagShort readShort() throws IOException {
         return readShort(true);
@@ -315,7 +315,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_Short from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Short
+     * @see TagType#TAG_Short
      */
     public TagShort readShort(boolean named) throws IOException {
         String name = null;
@@ -328,7 +328,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_Int from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Int
+     * @see TagType#TAG_Int
      */
     public TagInt readInt() throws IOException {
         return readInt(true);
@@ -340,7 +340,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_Int from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Int
+     * @see TagType#TAG_Int
      */
     public TagInt readInt(boolean named) throws IOException {
         String name = null;
@@ -353,7 +353,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_Long from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Long
+     * @see TagType#TAG_Long
      */
     public TagLong readLong() throws IOException {
         return readLong(true);
@@ -365,7 +365,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_Long from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Long
+     * @see TagType#TAG_Long
      */
     public TagLong readLong(boolean named) throws IOException {
         String name = null;
@@ -378,7 +378,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_Float from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Float
+     * @see TagType#TAG_Float
      */
     public TagFloat readFloat() throws IOException {
         return readFloat(true);
@@ -390,7 +390,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_Float from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Float
+     * @see TagType#TAG_Float
      */
     public TagFloat readFloat(boolean named) throws IOException {
         String name = null;
@@ -403,7 +403,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_Double from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Double
+     * @see TagType#TAG_Double
      */
     public TagDouble readDouble() throws IOException {
         return readDouble(true);
@@ -415,7 +415,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_Double from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_Double
+     * @see TagType#TAG_Double
      */
     public TagDouble readDouble(boolean named) throws IOException {
         String name = null;
@@ -428,7 +428,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_ByteArray from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_ByteArray
+     * @see TagType#TAG_ByteArray
      */
     public TagByteArray readByteArray() throws IOException {
         return readByteArray(true);
@@ -440,7 +440,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_ByteArray from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_ByteArray
+     * @see TagType#TAG_ByteArray
      */
     public TagByteArray readByteArray(boolean named) throws IOException {
         String name = null;
@@ -455,7 +455,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_String from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_String
+     * @see TagType#TAG_String
      */
     public TagString readString() throws IOException {
         return readString(true);
@@ -467,7 +467,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_String from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_String
+     * @see TagType#TAG_String
      */
     public TagString readString(boolean named) throws IOException {
         String name = null;
@@ -481,7 +481,7 @@ public class NBTInputStream implements Closeable {
      * @return a TAG_List from the stream
      * @throws IOException when there is an IO error
      * @throws NBTTagException when the tag byte does not indicate a known tag
-     * @see TAG_List
+     * @see TagType#TAG_List
      */
     public TagList readList() throws IOException, NBTTagException {
         return readList(true);
@@ -494,7 +494,7 @@ public class NBTInputStream implements Closeable {
      * @return a TAG_List from the stream
      * @throws IOException when there is an IO error
      * @throws NBTTagException when the tag byte does not indicate a known tag
-     * @see TAG_List
+     * @see TagType#TAG_List
      */
     public TagList readList(boolean named) throws IOException, NBTTagException {
         String name = null;
@@ -519,7 +519,7 @@ public class NBTInputStream implements Closeable {
      * @return a TAG_Compound from the stream
      * @throws IOException when there is an IO error
      * @throws NBTTagException when the tag byte does not indicate a known tag
-     * @see TAG_Compound
+     * @see TagType#TAG_Compound
      */
     public TagCompound readCompound() throws IOException, NBTTagException {
         return readCompound(true);
@@ -532,7 +532,7 @@ public class NBTInputStream implements Closeable {
      * @return a TAG_Compound from the stream
      * @throws IOException when there is an IO error
      * @throws NBTTagException when the tag byte does not indicate a known tag
-     * @see TAG_Compound
+     * @see TagType#TAG_Compound
      */
     public TagCompound readCompound(boolean named)
         throws IOException, NBTTagException {
@@ -552,7 +552,7 @@ public class NBTInputStream implements Closeable {
      * (excluding the tag type).
      * @return a TAG_IntArray from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_IntArray
+     * @see TagType#TAG_IntArray
      */
     public TagIntArray readIntArray() throws IOException {
         return readIntArray(true);
@@ -564,7 +564,7 @@ public class NBTInputStream implements Closeable {
      * @param named whether the tag is named
      * @return a TAG_IntArray from the stream
      * @throws IOException when there is an IO error
-     * @see TAG_IntArray
+     * @see TagType#TAG_IntArray
      */
     public TagIntArray readIntArray(boolean named) throws IOException {
         String name = null;

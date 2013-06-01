@@ -6,7 +6,8 @@
 package org.bytefire.libnbt;
 
 /**
- * Unnamed, null-payload tag used to mark the end of a list.
+ * A tag representing an unnamed, null-payload tag used to mark the
+ * end of a list.
  * @author Timothy Oltjenbruns
  * @version 1.0, 05/22/2013
  * @see TagType#TAG_End
