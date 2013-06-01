@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * A tag representing a signed, 32 bit, big endian integer.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/29/2013
+ * @version 1.0, 05/29/2013
  * @see TagType#TAG_Int
  */
 public class TagInt extends Tag {

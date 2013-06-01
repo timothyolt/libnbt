@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * Thrown when a problem occurs with the type of a Tag.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/28/2013
+ * @version 1.0, 05/28/2013
  * @see Tag
  */
 public class NBTTagException extends Exception {

@@ -15,7 +15,7 @@ import static org.bytefire.libnbt.TagType.TAG_List;
  * A tag representing a sequential list of uniquely named tags,
  * terminated with a TAG_End.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/29/2013
+ * @version 1.0, 05/29/2013
  * @see TagType#TAG_Compound
  */
 public class TagCompound extends Tag {

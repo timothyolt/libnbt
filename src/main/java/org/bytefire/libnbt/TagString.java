@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
  * A tag representing a byte array representing an UTF-8 string,
  * headed by a TAG_Short for length.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/29/2013
+ * @version 1.0, 05/29/2013
  * @see TagType#Tag_String
  */
 public class TagString extends Tag {

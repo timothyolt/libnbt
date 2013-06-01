@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * An array of integers, headed by a TAG_Int for length.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/30/2013
+ * @version 1.0, 05/30/2013
  * @see TagType#TAG_Int
  * @see TagType#TAG_IntArray
  */

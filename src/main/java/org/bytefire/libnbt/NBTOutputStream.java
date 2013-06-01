@@ -18,7 +18,7 @@ import static org.bytefire.libnbt.TagType.*;
 /**
  * An OutputStream for writing NBT files.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/31/2013
+ * @version 1.0, 05/31/2013
  * @see java.io.OutputStream
  * @see java.io.Closable
  */

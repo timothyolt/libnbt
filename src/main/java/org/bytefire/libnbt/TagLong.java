@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * A tag representing a signed, 64 bit, big endian long.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/29/2013
+ * @version 1.0, 05/29/2013
  * @see TagType#TAG_Long
  */
 public class TagLong extends Tag {

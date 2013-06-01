@@ -8,11 +8,11 @@ package org.bytefire.libnbt;
 /**
  * Abstract class that represents a single tag.
  * @author timn
- * @version 0.5, 05/29/2013
+ * @version 1.0, 05/29/2013
  * @see TagType
  */
 public abstract class Tag {
-    
+
     /**
      * The name of the tag, null if unnamed.
      */

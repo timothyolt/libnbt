@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * Unnamed, null-payload tag used to mark the end of a list.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/22/2013
+ * @version 1.0, 05/22/2013
  * @see TagType#TAG_End
  */
 public class TagEnd extends Tag {

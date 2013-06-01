@@ -14,7 +14,7 @@ import static org.bytefire.libnbt.TagType.TAG_List;
  * A sequential list of unnamed tags, headed by a TAG_Byte for tag type and
  * a TAG_Int for length.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/30/2013
+ * @version 1.0, 05/30/2013
  * @see TagType#TAG_List
  */
 public class TagList extends Tag {

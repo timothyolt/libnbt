@@ -9,7 +9,7 @@ package org.bytefire.libnbt;
  * A tag representing a signed, 64 bit, big endian,
  * IEEE 754-2008 floating point value.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/29/2013
+ * @version 1.0, 05/29/2013
  * @see TagType#TAG_Double
  */
 public class TagDouble extends Tag {

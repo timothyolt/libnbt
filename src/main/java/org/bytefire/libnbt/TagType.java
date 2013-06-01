@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * Convenience numeration for each tag type and ID byte.
  * @author Timothy Oltjenbruns
- * @version 0.5, 05/31/2013
+ * @version 1.0, 05/31/2013
  */
 public enum TagType {
     /**
