@@ -9,7 +9,7 @@ package org.bytefire.libnbt;
  * A tag representing an array of bytes of unspecified format,
  * headed by a TAG_Int for length.
  * @author Timothy Oltjenbruns
- * @version 1.0, 05/29/2013
+ * @version 1.1, 06/03/2013
  * @see TagType#TAG_ByteArray
  * @see TagType#TAG_Byte
  * @see TagType#TAG_Int
@@ -73,18 +73,37 @@ public class TagByteArray extends Tag {
      */
     @Override
     public String toString() {
+        return toString(0);
+    }
+
+    /**
+     * Converts the tag to a string (for internal use only).
+     * @param depth indentation key
+     * @return string representation of the specified tag
+     */
+    protected String toString(int depth) {
+        String eol = System.getProperty("line.separator");
 
         String typeSuffix = "";
         if (name != null) typeSuffix = "(\"" + name + "\")";
 
         String bytes = "";
+        for(int i = 0; i < depth; i++) bytes += "    ";
+        bytes += "{";
         for (int i = 0; i < payload.length; i++) {
-            if (i != 0) bytes += ", ";
+            if (i % 16 == 0){
+                bytes += eol;
+                for(int ii = 0; ii < depth + 1; ii++) bytes += "    ";
+            }
+            else bytes += ", ";
             bytes += Byte.toString(payload[i]);
         }
+        bytes += eol;
+        for(int i = 0; i < depth; i++) bytes += "    ";
+        bytes += "}";
 
         return "TAG_ByteArray" + typeSuffix + ": ["
             + Integer.toString(payload.length) + " bytes]"
-            + System.getProperty("line.separator") + bytes;
+            + eol + bytes;
     }
 }

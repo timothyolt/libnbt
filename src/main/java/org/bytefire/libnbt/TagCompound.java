@@ -8,14 +8,12 @@ package org.bytefire.libnbt;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
-import static org.bytefire.libnbt.TagType.TAG_Compound;
-import static org.bytefire.libnbt.TagType.TAG_List;
 
 /**
  * A tag representing a sequential list of uniquely named tags,
  * terminated with a TAG_End.
  * @author Timothy Oltjenbruns
- * @version 1.0, 05/29/2013
+ * @version 1.1, 06/03/2013
  * @see TagType#TAG_Compound
  */
 public class TagCompound extends Tag {
@@ -101,11 +99,22 @@ public class TagCompound extends Tag {
         for (Map.Entry<String, Tag> mapEntry : payload.entrySet()) {
             Tag tag = mapEntry.getValue();
             for(int i = 0; i < depth + 1; i++) subString += "    ";
-            if (tag.getTagType().equals(TAG_Compound))
-                subString += ((TagCompound) tag).toString(depth + 1) + eol;
-            else if (tag.getTagType().equals(TAG_List))
-                subString += ((TagList) tag).toString(depth + 1) + eol;
-            else subString += tag.toString() + eol;
+            switch (tag.getTagType()){
+                case TAG_Compound:
+                    subString += ((TagCompound) tag).toString(depth + 1) + eol;
+                    break;
+                case TAG_List:
+                    subString += ((TagList) tag).toString(depth + 1) + eol;
+                    break;
+                case TAG_ByteArray:
+                    subString += ((TagByteArray) tag).toString(depth + 1) + eol;
+                    break;
+                case TAG_IntArray:
+                    subString += ((TagIntArray) tag).toString(depth + 1) + eol;
+                    break;
+                default:
+                    subString += tag.toString() + eol;
+            }
         }
         for(int i = 0; i < depth; i++) subString += "    ";
         subString += "}";

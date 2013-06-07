@@ -5,6 +5,8 @@
 
 package org.bytefire.libnbt;
 
+import org.bytefire.libnbt.io.NBTInputStream;
+import org.bytefire.libnbt.io.NBTOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,13 +16,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bytefire.libnbt.io.NBTTextInputStream;
+import org.bytefire.libnbt.io.NBTTextOutputStream;
 
 /**
  * A demo java file showing how to use libnbt using the original examples
  * included in Markus Persson's NBT specification, which is also supplied
  * in updated form with this library.
  * @author Timothy Oltjenbruns
- * @version 1.0, 05/31/2013
+ * @version 1.1, 06/03/2013
  * @see NBTOutputStream
  * @see NBTInputStream
  * @see Tag
@@ -36,6 +40,7 @@ public class NBTDemo {
         //Declares the four NBT IO streams used in this demo.
         NBTOutputStream testNBT;
         NBTOutputStream bigtestNBT;
+        NBTTextOutputStream bigtestTOut;
 
         //Declares the two root compound tags for writing to the NBT files
         Map<String, Tag> testRoot = new HashMap<String, Tag>();
@@ -187,6 +192,16 @@ public class NBTDemo {
                 new FileOutputStream("bigtest.nbt"), true);
             bigtestNBT.writeTag(bigtestOut);
             bigtestNBT.close();
+
+            /*
+             * Writing to a text-editable file is just as simple as if you were
+             * writing an NBT file. Instead, you create an NBTTextOutputStream
+             * but you can write the same root compound tag to it.
+             */
+            bigtestTOut = new NBTTextOutputStream(
+                new FileOutputStream("bigtest.txt"));
+            bigtestTOut.writeTag(bigtestOut);
+            bigtestTOut.close();
         } catch (IOException ex) {
             Logger.getLogger(NBTDemo.class.getName())
                 .log(Level.SEVERE, null, ex);
@@ -202,8 +217,9 @@ public class NBTDemo {
              */
             NBTInputStream testIn = new NBTInputStream(
                 new FileInputStream("test.nbt"));
-            NBTInputStream bigtestIn = new NBTInputStream(
-                new FileInputStream("bigtest.nbt"));
+
+            NBTTextInputStream bigtestTIn = new NBTTextInputStream(
+                new FileInputStream("bigtest.txt"));
 
             /*
              * If you want the whole file read (and the contents are wrapped by
@@ -215,7 +231,7 @@ public class NBTDemo {
                 .info(testIn.readNextTag().toString());
 
             Logger.getLogger(NBTDemo.class.getName())
-                .info(bigtestIn.readNextTag().toString());
+                .info(bigtestTIn.readNextTag().toString());
 
         } catch (IOException ex) {
             Logger.getLogger(NBTDemo.class.getName())

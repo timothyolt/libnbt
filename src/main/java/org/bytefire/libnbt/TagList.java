@@ -7,14 +7,11 @@ package org.bytefire.libnbt;
 
 import java.util.ArrayList;
 import java.util.List;
-import static org.bytefire.libnbt.TagType.TAG_Compound;
-import static org.bytefire.libnbt.TagType.TAG_List;
-
 /**
  * A sequential list of unnamed tags, headed by a TAG_Byte for tag type and
  * a TAG_Int for length.
  * @author Timothy Oltjenbruns
- * @version 1.0, 05/30/2013
+ * @version 1.1, 06/03/2013
  * @see TagType#TAG_List
  */
 public class TagList extends Tag {
@@ -146,11 +143,22 @@ public class TagList extends Tag {
         subString += "{" + eol;
         for (Tag tag : payload) {
             for(int ii = 0; ii < depth + 1; ii++) subString += "    ";
-            if (tag.getTagType().equals(TAG_Compound))
-                subString += ((TagCompound) tag).toString(depth + 1) + eol;
-            else if (tag.getTagType().equals(TAG_List))
-                subString += ((TagList) tag).toString(depth + 1) + eol;
-            else subString += tag.toString() + eol;
+            switch (tag.getTagType()){
+                case TAG_Compound:
+                    subString += ((TagCompound) tag).toString(depth + 1) + eol;
+                    break;
+                case TAG_List:
+                    subString += ((TagList) tag).toString(depth + 1) + eol;
+                    break;
+                case TAG_ByteArray:
+                    subString += ((TagByteArray) tag).toString(depth + 1) + eol;
+                    break;
+                case TAG_IntArray:
+                    subString += ((TagIntArray) tag).toString(depth + 1) + eol;
+                    break;
+                default:
+                    subString += tag.toString() + eol;
+            }
         }
         for(int i = 0; i < depth; i++) subString += "    ";
         subString += "}";

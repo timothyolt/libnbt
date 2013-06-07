@@ -8,7 +8,7 @@ package org.bytefire.libnbt;
 /**
  * An array of integers, headed by a TAG_Int for length.
  * @author Timothy Oltjenbruns
- * @version 1.0, 05/30/2013
+ * @version 1.1, 06/03/2013
  * @see TagType#TAG_Int
  * @see TagType#TAG_IntArray
  */
@@ -71,18 +71,37 @@ public class TagIntArray extends Tag {
      */
     @Override
     public String toString() {
+        return toString(0);
+    }
+
+    /**
+     * Converts the tag to a string (for internal use only).
+     * @param depth indentation key
+     * @return string representation of the specified tag
+     */
+    protected String toString(int depth) {
+        String eol = System.getProperty("line.separator");
 
         String typeSuffix = "";
         if (name != null) typeSuffix = "(\"" + name + "\")";
 
         String integers = "";
+        for(int i = 0; i < depth; i++) integers += "    ";
+        integers += "{";
         for (int i = 0; i < payload.length; i++) {
-            if (i != 0) integers += ", ";
+            if (i % 16 == 0){
+                integers += eol;
+                for(int ii = 0; ii < depth + 1; ii++) integers += "    ";
+            }
+            else integers += ", ";
             integers += Integer.toString(payload[i]);
         }
+        integers += eol;
+        for(int i = 0; i < depth; i++) integers += "    ";
+        integers += "}";
 
-        return "TAG_IntArray" + typeSuffix + ": ["
-            + Integer.toString(payload.length) + " integers]"
-            + System.getProperty("line.separator") + integers;
+        return "TAG_ByteArray" + typeSuffix + ": ["
+            + Integer.toString(payload.length) + " bytes]"
+            + eol + integers;
     }
 }
