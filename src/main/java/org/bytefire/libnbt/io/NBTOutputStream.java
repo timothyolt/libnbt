@@ -3,7 +3,7 @@
  * To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package org.bytefire.libnbt;
+package org.bytefire.libnbt.io;
 
 import java.io.Closeable;
 import java.io.DataOutputStream;
@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPOutputStream;
+import org.bytefire.libnbt.NBTTagException;
+import org.bytefire.libnbt.*;
 import static org.bytefire.libnbt.TagType.*;
 
 /**
@@ -26,24 +28,6 @@ public class NBTOutputStream implements Closeable {
 
     private DataOutputStream out;
 
-    private final boolean text;
-
-    /**
-     * Writes NBT data to a DataOutputStream.
-     * @param out an OutputStream to use
-     * @param gzip whether to gzip the file
-     * @param text whether to output text instead of NBT
-     * @throws IOException when there is an IO error
-     * @see java.io.DataOutputStream
-     * @see java.io.GZIPOutputStream
-     */
-    public NBTOutputStream(OutputStream out, boolean gzip, boolean text)
-        throws IOException {
-        if (gzip) this.out = new DataOutputStream(new GZIPOutputStream(out));
-        else this.out = new DataOutputStream(out);
-        this.text = text;
-    }
-
     /**
      * Writes NBT data to a DataOutputStream.
      * @param out an OutputStream to use
@@ -55,7 +39,6 @@ public class NBTOutputStream implements Closeable {
     public NBTOutputStream(OutputStream out, boolean gzip) throws IOException {
         if (gzip) this.out = new DataOutputStream(new GZIPOutputStream(out));
         else this.out = new DataOutputStream(out);
-        this.text = false;
     }
 
     /**
@@ -67,7 +50,6 @@ public class NBTOutputStream implements Closeable {
      */
     public NBTOutputStream(OutputStream out) throws IOException {
         this.out = new DataOutputStream(new GZIPOutputStream(out));
-        this.text = false;
     }
 
     /**
@@ -134,7 +116,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagEnd TAG_End to the stream.
+     * Writes a TAG_End to the stream.
      * @throws IOException when there is an IO error
      * @see TagEnd
      */
@@ -143,7 +125,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagByte TAG_Byte to the stream.
+     * Writes a TAG_Byte to the stream.
      * @param byteTag TAG_Byte to be written
      * @throws IOException when there is an IO error
      * @see TagByte
@@ -153,7 +135,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagByte TAG_Byte to the stream.
+     * Writes a TAG_Byte to the stream.
      * @param byteTag TAG_Byte to be written
      * @param named whether the tag's name and ID should be written
      * @throws IOException when there is an IO error
@@ -169,7 +151,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagShort TAG_Short to the stream.
+     * Writes a TAG_Short to the stream.
      * @param shortTag TAG_Short to be written
      * @throws IOException when there is an IO error
      * @see TagShort
@@ -179,7 +161,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagShort TAG_Short to the stream.
+     * Writes a TAG_Short to the stream.
      * @param shortTag TAG_Short to be written
      * @param named whether the tag's name and ID should be written
      * @throws IOException when there is an IO error
@@ -195,7 +177,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagInt TAG_Int to the stream.
+     * Writes a TAG_Int to the stream.
      * @param intTag TAG_Int to be written
      * @throws IOException when there is an IO error
      * @see TagInt
@@ -205,7 +187,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagInt TAG_Int to the stream.
+     * Writes a TAG_Int to the stream.
      * @param intTag TAG_Int to be written
      * @param named whether the tag's name and ID should be written
      * @throws IOException when there is an IO error
@@ -220,7 +202,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagLong TAG_Long to the stream.
+     * Writes a TAG_Long to the stream.
      * @param longTag TAG_Long to be written
      * @throws IOException when there is an IO error
      * @see TagLong
@@ -230,7 +212,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagLong TAG_Long to the stream.
+     * Writes a TAG_Long to the stream.
      * @param longTag TAG_Long to be written
      * @param named whether the tag's name and ID should be written
      * @throws IOException when there is an IO error
@@ -245,7 +227,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagFloat TAG_Float to the stream.
+     * Writes a TAG_Float to the stream.
      * @param floatTag TAG_Float to be written
      * @throws IOException when there is an IO error
      * @see TagFloat
@@ -255,7 +237,7 @@ public class NBTOutputStream implements Closeable {
     }
 
     /**
-     * Writes a @see TagFloat TAG_Float to the stream.
+     * Writes a TAG_Float to the stream.
      * @param floatTag TAG_Float to be written
      * @param named whether the tag's name and ID should be written
      * @throws IOException when there is an IO error
@@ -424,7 +406,7 @@ public class NBTOutputStream implements Closeable {
      * @throws IOException when there is an IO error
      * @see TagIntArray
      */
-    public void writeByteArray(TagIntArray intArrayTag) throws IOException {
+    public void writeIntArray(TagIntArray intArrayTag) throws IOException {
         writeIntArray(intArrayTag, true);
     }
 

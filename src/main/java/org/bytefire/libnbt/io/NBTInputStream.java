@@ -3,7 +3,7 @@
  * To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
  */
 
-package org.bytefire.libnbt;
+package org.bytefire.libnbt.io;
 
 import java.io.Closeable;
 import java.io.DataInputStream;
@@ -16,36 +16,21 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
+import org.bytefire.libnbt.NBTNameException;
+import org.bytefire.libnbt.NBTTagException;
+import org.bytefire.libnbt.*;
 import static org.bytefire.libnbt.TagType.*;
 
 /**
  * An InputStream for reading NBT files.
  * @author Timothy Oltjenbruns
- * @version 1.0, 05/31/2013
+ * @version 1.1, 06/06/2013
  * @see java.io.InputStream
  * @see java.io.Closable
  */
 public class NBTInputStream implements Closeable {
 
     private DataInputStream in;
-
-    private final boolean text;
-
-    /**
-     * Reads NBT data from a DataInputStream.
-     * @param in an InputStream to use
-     * @param gzip whether the file is gzipped
-     * @param text whether to read text instead of NBT
-     * @throws IOException when there is an IO error
-     * @see java.io.DataInputStream
-     * @see java.io.GZIPInputStream
-     */
-    public NBTInputStream(InputStream in, boolean gzip, boolean text)
-        throws IOException {
-        if (gzip) this.in = new DataInputStream(new GZIPInputStream(in));
-        else this.in = new DataInputStream(in);
-        this.text = text;
-    }
 
     /**
      * Reads NBT data from a DataInputStream.
@@ -58,7 +43,6 @@ public class NBTInputStream implements Closeable {
     public NBTInputStream(InputStream in, boolean gzip) throws IOException {
         if (gzip) this.in = new DataInputStream(new GZIPInputStream(in));
         else this.in = new DataInputStream(in);
-        this.text = false;
     }
 
     /**
@@ -70,7 +54,6 @@ public class NBTInputStream implements Closeable {
      */
     public NBTInputStream(InputStream in) throws IOException {
         this.in = new DataInputStream(new GZIPInputStream(in));
-        this.text = false;
     }
 
     /**
@@ -228,7 +211,8 @@ public class NBTInputStream implements Closeable {
         TagType readType;
         if (named) {
             readType = readType();
-            if (type != null) while (!readType.equals(type)) {
+            if (type != null) for (int i = 0; !readType.equals(type); i++) {
+                if (i != 0) readType = readType();
                 in.skipBytes(in.readShort());
                 skipTags(1, readType);
             }
