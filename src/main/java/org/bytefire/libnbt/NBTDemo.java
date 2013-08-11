@@ -41,7 +41,7 @@ public class NBTDemo {
         NBTOutputStream testNBT;
         NBTOutputStream bigtestNBT;
         NBTTextOutputStream bigtestTOut;
-
+        
         //Declares the two root compound tags for writing to the NBT files
         Map<String, Tag> testRoot = new HashMap<String, Tag>();
         Map<String, Tag> bigtestRoot = new HashMap<String, Tag>();
